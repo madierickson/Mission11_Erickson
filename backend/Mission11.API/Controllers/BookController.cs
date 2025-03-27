@@ -28,5 +28,16 @@ namespace Mission11.API.Controllers
                 TotalNumBooks = totalNumBooks
             });
         }
+
+        [HttpGet("GetBookCategories")]
+        public IActionResult GetBookCategories()
+        {
+            var bookCategories = _context.Books
+                .Select(c => c.Category)
+                .Distinct()
+                .ToList();
+            
+            return Ok(bookCategories);
+        }
     }
 }
