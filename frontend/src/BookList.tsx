@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Book } from './types/Book';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<Book[]>([]);
 
   const [pageSize, setPageSize] = useState<number>(5);
@@ -16,8 +16,11 @@ function BookList() {
 
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+        .map((cat) => `bookTypes=${encodeURIComponent(cat)}`)
+        .join('&');
       const response = await fetch(
-        `https://localhost:5000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}`
+        `https://localhost:5000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
       );
       const data = await response.json();
 
@@ -46,9 +49,6 @@ function BookList() {
 
   return (
     <>
-      <h1>Book List</h1>
-      <br />
-
       <button onClick={toggleSortOrder}>
         Sort by Title {sortOrder === 'asc' ? '▲' : '▼'}
       </button>
