@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { CartItem } from '../types/CartItem';
 import { useState } from 'react';
 
+/* This page will display the cart*/
 function AddToCart() {
   const navigate = useNavigate();
   const { title, bookID, author, price } = useParams();

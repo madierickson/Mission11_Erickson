@@ -11,7 +11,9 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
   const [totalItems, setTotalItems] = useState<number>(0);
 
-  const [totalPages, setTotalPages] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0); //Will use this to do pagination
+
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc'); // Sorting state
 
   const navigate = useNavigate();
 
@@ -27,6 +29,13 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
       let sortedBooks = data.books;
 
+      // Apply sorting
+      sortedBooks.sort((a: Book, b: Book) => {
+        return sortOrder === 'asc'
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title);
+      });
+
       setBooks(sortedBooks);
       // setBooks(data.books);
       setTotalItems(data.totalNumBooks);
@@ -39,7 +48,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   return (
     <>
       {books.map((b) => (
-        <div id="bookCard" className="card book-card mb-4" key={b.bookID}>
+        <div id="bookCard" className="card book-card mb-4" key={b.bookID}> 
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body"></div>
           <ul className="list-unstyled">

@@ -14,7 +14,7 @@ function App() {
             <Route path="/" element={<BooksPage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route
-              path="/addToCart/:title/:bookID/:author/:price"
+              path="/addToCart/:title/:bookID/:author/:price" /* This helps gather all the information to pass into those variables*/
               element={<AddToCart />}
             />
             <Route path="/cart" element={<CartPage />} />
