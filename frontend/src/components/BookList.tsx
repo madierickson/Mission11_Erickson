@@ -13,8 +13,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
   const [totalPages, setTotalPages] = useState<number>(0);
 
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc'); // Sorting state
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,13 +26,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
       const data = await response.json();
 
       let sortedBooks = data.books;
-
-      // Apply sorting
-      sortedBooks.sort((a: Book, b: Book) => {
-        return sortOrder === 'asc'
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      });
 
       setBooks(sortedBooks);
       // setBooks(data.books);

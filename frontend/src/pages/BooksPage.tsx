@@ -6,8 +6,7 @@ import CartSummary from '../components/CartSummary';
 
 function BooksPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
+  
   return (
     <div className="container mt-4">
       {/* Sticky cart summary in top-right corner */}
