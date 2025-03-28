@@ -44,7 +44,7 @@ function CategoryFilter({
               type="checkbox"
               id={c}
               value={c}
-              className="category=checkbox"
+              className="category-checkbox"
               onChange={handleCheckboxChange}
             />
             <label htmlFor={c}>{c}</label>

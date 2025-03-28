@@ -43,21 +43,12 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, sortOrder, totalItems, selectedCategories]);
-
-  // Toggle sorting order
-  const toggleSortOrder = () => {
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-  };
+  }, [pageSize, pageNum, totalItems, selectedCategories]);
 
   return (
     <>
-      <button onClick={toggleSortOrder}>
-        Sort by Title {sortOrder === 'asc' ? '▲' : '▼'}
-      </button>
-
       {books.map((b) => (
-        <div id="bookCard" className="card" key={b.bookID}>
+        <div id="bookCard" className="card book-card mb-4" key={b.bookID}>
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body"></div>
           <ul className="list-unstyled">

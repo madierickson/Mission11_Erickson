@@ -32,7 +32,12 @@ function CartPage() {
                   <h4 style={{ margin: 0 }}>{item.title}</h4>
                   <p style={{ margin: '0.25rem 0' }}>{item.author}</p>
                   <p style={{ margin: '0.25rem 0' }}>
-                    ${item.price.toFixed(2)} × {item.qty}
+                    Price: ${item.price.toFixed(2)}
+                  </p>
+                  <p style={{ margin: '0.25rem 0' }}>Quantity: {item.qty}</p>
+
+                  <p style={{ margin: '0.25rem 0', fontWeight: 'bold' }}>
+                    Subtotal: ${(item.price * item.qty).toFixed(2)}
                   </p>
                 </div>
                 <button onClick={() => removeFromCart(item.bookID)}>

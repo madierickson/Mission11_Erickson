@@ -1,7 +1,9 @@
 function HeaderBand() {
   return (
-    <div className="row bg-primary text-white">
-      <h1>Book List</h1>
+    <div className="header-baby-blue">
+      <div className="container">
+        <h1 className="text-center m-0">Book List</h1>
+      </div>
     </div>
   );
 }

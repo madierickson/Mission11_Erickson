@@ -6,18 +6,29 @@ import CartSummary from '../components/CartSummary';
 
 function BooksPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <div className="container mt-4">
-      <CartSummary/>
+      {/* Sticky cart summary in top-right corner */}
+      <div className="d-flex justify-content-end">
+        <CartSummary />
+      </div>
+
+      {/* Header */}
       <HeaderBand />
-      <div className="row">
-        <div className="col-md-3">
+
+      {/* Grid layout */}
+      <div className="row mt-4">
+        {/* Sidebar */}
+        <div className="col-md-3 mb-4">
           <CategoryFilter
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
           />
         </div>
+
+        {/* Book List */}
         <div className="col-md-9">
           <BookList selectedCategories={selectedCategories} />
         </div>
