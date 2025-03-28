@@ -40,7 +40,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, sortOrder, totalItems]);
+  }, [pageSize, pageNum, sortOrder, totalItems, selectedCategories]);
 
   // Toggle sorting order
   const toggleSortOrder = () => {
