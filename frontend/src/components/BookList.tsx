@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Book } from '../types/Book';
 import { useNavigate } from 'react-router-dom';
+import { fetchBooks } from '../api/BooksAPI';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<Book[]>([]);
@@ -9,46 +10,39 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
   const [pageNum, setPageNum] = useState<number>(1);
 
-  const [totalItems, setTotalItems] = useState<number>(0);
-
   const [totalPages, setTotalPages] = useState<number>(0); //Will use this to do pagination
-
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc'); // Sorting state
 
   const navigate = useNavigate();
 
+  const [error, setError] = useState<string | null>(null);
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const fetchBooks = async () => {
-      const categoryParams = selectedCategories
-        .map((cat) => `bookTypes=${encodeURIComponent(cat)}`)
-        .join('&');
-      const response = await fetch(
-        `https://localhost:5000/Book/AllBooks?pageHowMany=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
-      );
-      const data = await response.json();
+    const loadBooks = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchBooks(pageSize, pageNum, selectedCategories);
 
-      let sortedBooks = data.books;
-
-      // Apply sorting
-      sortedBooks.sort((a: Book, b: Book) => {
-        return sortOrder === 'asc'
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title);
-      });
-
-      setBooks(sortedBooks);
-      // setBooks(data.books);
-      setTotalItems(data.totalNumBooks);
-      setTotalPages(Math.ceil(totalItems / pageSize));
+        setBooks(data.books);
+        setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
+      } catch (error) {
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchBooks();
-  }, [pageSize, pageNum, totalItems, selectedCategories]);
+    loadBooks();
+  }, [pageSize, pageNum, selectedCategories]);
+
+  if (loading) return <p>Loading books...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
     <>
       {books.map((b) => (
-        <div id="bookCard" className="card book-card mb-4" key={b.bookID}> 
+        <div id="bookCard" className="card book-card mb-4" key={b.bookID}>
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body"></div>
           <ul className="list-unstyled">
