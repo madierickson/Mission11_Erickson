@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/0700efa4-1563-4e0d-9db8-49513dff3ae6/resourceGroups/appsvc_windows_eastus/providers/Microsoft.Web/sites/Mission13-Erickson-Backend",
+  "appService.deploySubpath": "backend/Mission11.API/publish"
+}
