@@ -17,7 +17,7 @@ const NewBookForm = ({ onSuccess, onCancel }: NewBoookFormProps) => {
     classification: '',
     category: '',
     pageCount: 0,
-    price: 0.0,
+    price: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -62,14 +62,14 @@ namespace Mission11.API.Controllers
         {
             var existingBook = _context.Books.Find(bookID);
 
-            existingBook.title = updatedBook.title;
-            existingBook.author = updatedBook.author;
-            existingBook.publisher = updatedBook.publisher;
-            existingBook.isbn = updatedBook.isbn;
-            existingBook.classification = updatedBook.classification;
-            existingBook.category = updatedBook.category;
-            existingBook.pageCount = updatedBook.pageCount;
-            existingBook.price = updatedBook.price;
+            existingBook.Title = updatedBook.Title;
+            existingBook.Author = updatedBook.Author;
+            existingBook.Publisher = updatedBook.Publisher;
+            existingBook.ISBN = updatedBook.ISBN;
+            existingBook.Classification = updatedBook.Classification;
+            existingBook.Category = updatedBook.Category;
+            existingBook.PageCount = updatedBook.PageCount;
+            existingBook.Price = updatedBook.Price;
 
             _context.Books.Update(existingBook);
             _context.SaveChanges();
