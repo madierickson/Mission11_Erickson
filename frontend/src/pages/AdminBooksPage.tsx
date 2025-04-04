@@ -35,8 +35,8 @@ const AdminBooksPage = () => {
   return (
     <div>
       <h1>Admin - Books</h1>
-      <table>
-        <thead>
+      <table className="table table-bordered table-striped">
+        <thead className="table-dark">
           <tr>
             <th>ID</th>
             <th>Title</th>
@@ -47,6 +47,7 @@ const AdminBooksPage = () => {
             <th>Category</th>
             <th>Page Count</th>
             <th>Price</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -62,8 +63,12 @@ const AdminBooksPage = () => {
               <td>{b.pageCount}</td>
               <td>{b.price}</td>
               <td>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button className="btn btn-primary btn-sm w-100 mb-1">
+                  Edit
+                </button>
+                <button className="btn btn-danger btn-sm w-100 mb-1">
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
