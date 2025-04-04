@@ -43,49 +43,52 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   return (
     <>
       {books.map((b) => (
-        <><div id="bookCard" className="card book-card mb-4" key={b.bookID}>
-          <h3 className="card-title">{b.title}</h3>
-          <div className="card-body"></div>
-          <ul className="list-unstyled">
-            <li>
-              <strong>Author: </strong>
-              {b.author}
-            </li>
-            <li>
-              <strong>Publisher: </strong>
-              {b.publisher}
-            </li>
-            <li>
-              <strong>ISBN: </strong>
-              {b.isbn}
-            </li>
-            <li>
-              <strong>Classification: </strong>
-              {b.classification}
-            </li>
-            <li>
-              <strong>Category: </strong>
-              {b.category}
-            </li>
-            <li>
-              <strong>Page Count: </strong>
-              {b.pageCount} pages
-            </li>
-            <li>
-              <strong>Price: </strong>${b.price}
-            </li>
-          </ul>
+        <>
+          <div id="bookCard" className="card book-card mb-4" key={b.bookID}>
+            <h3 className="card-title">{b.title}</h3>
+            <div className="card-body"></div>
+            <ul className="list-unstyled">
+              <li>
+                <strong>Author: </strong>
+                {b.author}
+              </li>
+              <li>
+                <strong>Publisher: </strong>
+                {b.publisher}
+              </li>
+              <li>
+                <strong>ISBN: </strong>
+                {b.isbn}
+              </li>
+              <li>
+                <strong>Classification: </strong>
+                {b.classification}
+              </li>
+              <li>
+                <strong>Category: </strong>
+                {b.category}
+              </li>
+              <li>
+                <strong>Page Count: </strong>
+                {b.pageCount} pages
+              </li>
+              <li>
+                <strong>Price: </strong>${b.price}
+              </li>
+            </ul>
 
-          <button
-            className="btn btn-success"
-            onClick={() => navigate(
-              `/addToCart/${b.title}/${b.bookID}/${b.author}/${b.price}`
-            )}
-          >
-            Add To Cart
-          </button>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                navigate(
+                  `/addToCart/${b.title}/${b.bookID}/${b.author}/${b.price}`
+                )
+              }
+            >
+              Add To Cart
+            </button>
           </div>
-        </div>
+        </>
       ))}
 
       <Pagination
@@ -96,7 +99,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         onPageSizeChange={(newSize) => {
           setPageSize(newSize);
           setPageNum(1);
-        }} 
+        }}
       />
     </>
   );
