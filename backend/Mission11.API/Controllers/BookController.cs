@@ -49,7 +49,7 @@ namespace Mission11.API.Controllers
             return Ok(bookCategories);
         }
 
-        [HttpPost("Add")]
+        [HttpPost("AddBook")]
         public IActionResult AddBook([FromBody] Book newBook)
         {
             _context.Books.Add(newBook);
