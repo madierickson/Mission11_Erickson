@@ -84,18 +84,20 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           >
             Add To Cart
           </button>
-        </div><Pagination
-            currentPage={pageNum}
-            totalPages={totalPages}
-            pageSize={pageSize}
-            onPageChange={setPageNum}
-            onPageSizeChange={(newSize) => {
-              setPageSize(newSize);
-              setPageNum(1);
-            } } 
-            />
+          </div>
         </div>
       ))}
+
+      <Pagination
+        currentPage={pageNum}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        onPageChange={setPageNum}
+        onPageSizeChange={(newSize) => {
+          setPageSize(newSize);
+          setPageNum(1);
+        }} 
+      />
     </>
   );
 }
