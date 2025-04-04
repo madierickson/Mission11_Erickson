@@ -54,6 +54,10 @@ const AdminBooksPage = () => {
               <td>{b.category}</td>
               <td>{b.pageCount}</td>
               <td>{b.price}</td>
+              <td>
+                <button>Edit</button>
+                <button>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Book } from '../types/Book';
 import { useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/BooksAPI';
+import Pagination from './Pagination';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [books, setBooks] = useState<Book[]>([]);
@@ -42,7 +43,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   return (
     <>
       {books.map((b) => (
-        <div id="bookCard" className="card book-card mb-4" key={b.bookID}>
+        <><div id="bookCard" className="card book-card mb-4" key={b.bookID}>
           <h3 className="card-title">{b.title}</h3>
           <div className="card-body"></div>
           <ul className="list-unstyled">
@@ -77,53 +78,24 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
 
           <button
             className="btn btn-success"
-            onClick={() =>
-              navigate(
-                `/addToCart/${b.title}/${b.bookID}/${b.author}/${b.price}`
-              )
-            }
+            onClick={() => navigate(
+              `/addToCart/${b.title}/${b.bookID}/${b.author}/${b.price}`
+            )}
           >
             Add To Cart
           </button>
+        </div><Pagination
+            currentPage={pageNum}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            onPageChange={setPageNum}
+            onPageSizeChange={(newSize) => {
+              setPageSize(newSize);
+              setPageNum(1);
+            } } 
+            />
         </div>
       ))}
-
-      <button disabled={pageNum === 1} onClick={() => setPageNum(pageNum - 1)}>
-        Previous
-      </button>
-
-      {[...Array(totalPages)].map((_, index) => (
-        <button
-          key={index + 1}
-          onClick={() => setPageNum(index + 1)}
-          disabled={pageNum === index + 1}
-        >
-          {index + 1}
-        </button>
-      ))}
-
-      <button
-        disabled={pageNum === totalPages}
-        onClick={() => setPageNum(pageNum + 1)}
-      >
-        Next
-      </button>
-
-      <br />
-      <label>
-        Results per page:
-        <select
-          value={pageSize}
-          onChange={(p) => {
-            setPageSize(Number(p.target.value));
-            setPageNum(1);
-          }}
-        >
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
-      </label>
     </>
   );
 }
